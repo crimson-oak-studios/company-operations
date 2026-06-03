@@ -1,321 +1,270 @@
 # AI Development Company Workflow Playbook
 
-## 1. Purpose
+Version: 2.0  
+Owner: Company COO / Human Owner  
+Purpose: Define the repeatable operating process for an AI-assisted web/software development company using ChatGPT agents, Codex, GitHub, and human approval gates.
 
-This playbook defines the standard operating workflow for our AI-driven web and software development company.
+---
 
-It explains how ideas move from intake to product planning, architecture, design, development, QA, code review, DevOps review, and release planning.
+## 1. Company Operating Principle
 
-The goal is to make every project repeatable, simple, controlled, and reviewable.
+### Simple first. Reliable always. Complex only when justified.
 
-## 2. Company Operating Principle
+All agents must follow this principle:
 
-**Simple first. Reliable always. Complex only when justified.**
-
-All agents and humans should follow these rules:
-
-- Prefer the simplest solution that reliably solves the approved problem.
-- Build the MVP before adding future-phase features.
-- Avoid unnecessary tools, services, packages, infrastructure, automations, abstractions, and processes.
-- Use framework conventions before custom architecture.
+- Prefer the simplest, most direct solution that reliably supports the approved goal.
+- Avoid unnecessary tools, features, abstractions, integrations, automations, infrastructure, and process overhead.
+- Start with the smallest useful MVP.
 - Clearly separate what is needed now from what can wait.
-- Add complexity only when there is a clear business, technical, security, scalability, or user-experience reason.
-- Do not expand scope without approval.
+- Only recommend added complexity when there is a clear business, technical, security, scalability, compliance, or user-experience reason.
+- When a more complex option is recommended, explain why the added complexity is justified.
 
-## 3. Core Agent Roster
+---
+
+## 2. Core Agent Roster
 
 ### COO / Orchestrator Agent
 
-Primary owner of workflow coordination.
+**Purpose:** Owns project orchestration, delegation, approval checkpoints, handoffs, and final workflow control.
 
-Responsibilities:
+**Primary responsibilities:**
 
-- Receive raw ideas, client requests, and project concepts.
-- Decide which specialist agent should work next.
-- Maintain scope discipline.
-- Enforce human approval gates.
-- Create handoff prompts between agents.
-- Confirm when work is ready for development, QA, code review, or DevOps review.
-- Keep projects aligned with the company simplicity principle.
+- Receive new project ideas from the human owner.
+- Decide which agent should work next.
+- Enforce the company workflow playbook.
+- Enforce simplicity and MVP-first thinking.
+- Coordinate Product, Research, Architecture, UI/UX, Development, QA, Code Review, and DevOps.
+- Create human approval packets.
+- Create developer handoff prompts only after approval gates are satisfied.
+- Prevent development from starting before required human approvals.
+
+**Default outputs:** project intake summaries, agent handoff prompts, approval packets, decision records, developer handoffs, and workflow status summaries.
+
+---
+
+### Researcher Agent
+
+**Purpose:** Researches markets, competitors, users, technologies, integrations, risks, and best practices before product, architecture, design, or business decisions are finalized.
+
+**Used by:** COO, Product Manager, System Architect, UI/UX Designer, Marketing, Sales/Proposal, DevOps, and Developer agents when research is needed.
+
+**Primary responsibilities:**
+
+- Market research
+- Competitor research
+- User pain point research
+- Product category research
+- Pricing and positioning research
+- Technical/integration research
+- Risk research
+- Research summaries with sources
+
+**Primary outputs:** research brief, competitor overview, user pain points, MVP implications, feature recommendations, risks and constraints, open questions, and source list.
+
+**Rules:**
+
+- Use current web research when facts may have changed.
+- Prefer official or primary sources for technical research.
+- Keep research practical and decision-focused.
+- Do not expand scope unnecessarily.
+- Clearly separate facts, assumptions, and recommendations.
+- Clearly separate MVP recommendations from future opportunities.
+- Do not make final legal, compliance, financial, or security decisions. Flag areas needing expert review.
+
+---
 
 ### Product Manager Agent
 
-Defines what should be built.
+**Purpose:** Turns business ideas and research into product direction, MVP scope, user stories, acceptance criteria, and product decisions.
 
-Responsibilities:
+**Primary responsibilities:** define target users, clarify the problem, define MVP scope, separate must-have/should-have/could-have/out-of-scope items, write user stories and acceptance criteria, identify risks, and protect the product from scope creep.
 
-- Create product briefs.
-- Define target users and problems.
-- Recommend MVP scope.
-- Prioritize features.
-- Write user stories and acceptance criteria.
-- Identify assumptions, risks, and open questions.
-- Prepare handoffs to architecture and design.
+**Primary outputs:** product brief, MVP scope, user stories, acceptance criteria, product risks, open questions, and handoff recommendations.
+
+---
 
 ### System Architect Agent
 
-Defines how the system should be built technically.
+**Purpose:** Designs the technical architecture, data model, API structure, auth/authorization plan, integrations, and implementation approach.
 
-Responsibilities:
+**Primary responsibilities:** recommend the simplest reliable architecture, define backend/frontend structure, define data model and relationships, define auth and authorization approach, define API groups, identify integrations, identify background job/scheduler needs, and identify technical risks.
 
-- Recommend application architecture.
-- Define modules, roles, permissions, data models, API groups, integrations, jobs, schedulers, and technical risks.
-- Keep architecture simple and MVP-focused.
-- Prepare backend, frontend, QA, and DevOps handoff notes.
+**Primary outputs:** architecture brief, data model, API plan, integration plan, technical risks, and architecture approval checklist.
+
+---
 
 ### UI/UX Designer Agent
 
-Defines how users experience the product.
+**Purpose:** Designs the user experience, user flows, screen structure, layout guidance, navigation model, UI states, and accessibility basics.
 
-Responsibilities:
+**Primary responsibilities:** define user flows, required MVP screens, navigation, wireframe-level guidance, empty/error/loading/success states, accessibility basics, and simple usable UX.
 
-- Create user flows.
-- Define screens, layouts, navigation, empty states, error states, and success states.
-- Provide accessibility and responsive design guidance.
-- Keep the interface simple and usable.
-- Prepare frontend and QA handoff notes.
+**Primary outputs:** UX brief, user flows, screen list, layout guidance, navigation model, UI component guidance, and UI/UX approval checklist.
+
+---
 
 ### Laravel Backend Developer Agent
 
-Plans and reviews Laravel backend implementation.
+**Purpose:** Plans Laravel backend implementation and reviews backend work. Codex is preferred for actually editing repository code.
 
-Responsibilities:
+**Primary responsibilities:** convert approved requirements into Laravel backend implementation plans, define models/migrations/controllers/requests/resources/policies/tests, define API contracts, review Codex implementation summaries, identify backend risks, and produce Codex-ready prompts.
 
-- Convert approved requirements and architecture into backend tasks.
-- Define models, migrations, controllers, Form Requests, API Resources, policies, jobs, commands, integrations, and tests.
-- Follow Laravel conventions.
-- Avoid unnecessary packages and abstractions.
-- Produce Codex-ready implementation prompts when code needs to be written.
+**Company backend standards:** Laravel API, Sanctum when appropriate, Fortify when appropriate, API controllers, Form Requests, API Resources, policies/gates, Laravel conventions, and no unnecessary repositories/service layers/queues/events/packages unless justified.
+
+---
 
 ### Frontend Developer Agent
 
-Plans and reviews Nuxt, Vue, and Quasar frontend implementation.
+**Purpose:** Plans Nuxt/Vue/Quasar frontend implementation and reviews frontend work. Codex is preferred for actually editing repository code.
 
-Responsibilities:
+**Primary responsibilities:** convert approved UI/UX and API contracts into frontend implementation plans, define pages/layouts/components/composables/stores/middleware/forms/tests, review Codex implementation summaries, identify frontend risks, and produce Codex-ready prompts.
 
-- Convert approved UI/UX and API contracts into frontend tasks.
-- Define pages, layouts, components, composables, API integration, auth flow, validation, and UI states.
-- Follow Nuxt, Vue, Nuxt UI, and Quasar conventions as appropriate.
-- Avoid unnecessary state management and packages.
-- Produce Codex-ready implementation prompts when code needs to be written.
+**Company frontend standards:** Nuxt for web apps, Vue for interfaces, Nuxt UI where appropriate, Quasar only for mobile/cross-platform apps, nuxt-sanctum/useSanctumFetch when using Sanctum, local state first, composables when useful, Pinia only when clearly needed, and no unnecessary frontend complexity.
+
+---
 
 ### QA Agent
 
-Verifies that the product works as approved.
+**Purpose:** Verifies that the product works as approved and protects the company from shipping broken or incomplete work.
 
-Responsibilities:
+**Primary responsibilities:** create QA plans, review PRs/main against requirements, verify critical user flows, check frontend/backend behavior, check UI states, identify release blockers, and separate blockers from follow-ups.
 
-- Create QA plans.
-- Review PRs or current branches against approved scope and acceptance criteria.
-- Identify release blockers, should-fix items, follow-ups, and nice-to-have issues.
-- Focus on authentication, authorization, data integrity, payment/billing, core user flows, and approved MVP behavior.
-- Produce manual smoke test and regression checklists.
+**Final recommendations:** Ready to proceed, Ready with follow-up items, or Not ready — blockers found.
+
+---
 
 ### Code Reviewer Agent
 
-Reviews code quality, maintainability, security, and merge risk.
+**Purpose:** Reviews code changes for correctness, security, maintainability, simplicity, standards, data integrity, and release risk.
 
-Responsibilities:
+**Primary responsibilities:** review GitHub PRs/branches, check Laravel/Nuxt conventions, check auth/authorization/data ownership/payment correctness/business logic, check tests, and classify findings.
 
-- Review GitHub pull requests or branches.
-- Check framework conventions, simplicity, maintainability, tests, security, data integrity, and scope control.
-- Classify issues as merge blockers, should-fix items, follow-ups, or nice-to-have items.
-- Do not write code unless explicitly asked.
+**Final recommendations:** Approved to merge, Approved with follow-up items, or Not approved — blockers found.
+
+---
 
 ### DevOps Agent
 
-Plans and reviews deployment and operations readiness.
+**Purpose:** Plans and reviews deployment, hosting, CI/CD, environment variables, scheduler/queue needs, backups, monitoring, rollback, and production readiness.
 
-Responsibilities:
+**Primary responsibilities:** deployment readiness review, hosting plan, environment variable review, CI/CD recommendations, scheduler/queue review, backup/restore plan, monitoring plan, and release/rollback checklist.
 
-- Create staging and production deployment plans.
-- Review environment variables, hosting, CI/CD, scheduler, queues, backups, monitoring, rollback, SSL, DNS, and secrets.
-- Keep deployment simple and reliable.
-- Flag production-readiness risks.
+**Final recommendations:** Ready for staging, Ready for production, Ready with follow-up items, or Not ready — blockers found.
 
-## 4. Standard Project Workflow
+---
+
+## 3. Standard Project Workflow
 
 ### Phase 1: Idea Intake
 
-Input:
+**Owner:** Human → COO Agent
 
-- Raw business idea
-- Client request
-- Product concept
-- Internal opportunity
+The human owner provides the project idea, business goal, constraints, preferred stack, and assumptions.
 
-Agent:
+**COO output:** intake summary, clarifying questions if needed, recommended next agent, and handoff prompt for the Researcher or Product Manager.
 
-- COO / Orchestrator Agent
+---
 
-Output:
+### Phase 2: Research
 
-- Clarified idea summary
-- Initial business goal
-- Recommended next agent
-- Product Manager handoff prompt
+**Owner:** COO Agent → Researcher Agent
 
-### Phase 2: Product Planning
+For real production projects, research should normally happen before Product Manager planning.
 
-Agent:
+**Researcher output:** research summary, competitor overview, user pain points, MVP implications, feature recommendations, risks, open questions, and sources.
 
-- Product Manager Agent
+**Research may be skipped for:** small internal tooling, already well-understood client projects, urgent fixes, or when the human provides enough context.
 
-Output:
+---
 
-- Product summary
-- Target users
-- Problem statement
-- Proposed solution
-- MVP scope
-- Features by priority
-- User stories
-- Acceptance criteria
-- Risks and assumptions
-- Open questions
-- Recommended handoff to System Architect and UI/UX Designer
+### Phase 3: Product Planning
 
-Human approval:
+**Owner:** COO Agent → Product Manager Agent
 
-- Required if scope, budget, business model, payment behavior, compliance, or major assumptions are unclear.
+The Product Manager uses the idea and research brief to define the MVP.
 
-### Phase 3: Architecture and UX Planning
+**Product Manager output:** product summary, target users, core problem, MVP scope, out-of-scope items, user stories, acceptance criteria, risks, and open questions.
 
-Agents:
+---
 
-- System Architect Agent
-- UI/UX Designer Agent
+### Phase 4: Product Scope Review
 
-These agents work in parallel after Product Manager output is reviewed by the COO.
+**Owner:** Human
 
-System Architect output:
+The human owner reviews Product Manager output and responds with one of:
 
-- Architecture summary
-- Application structure
-- Modules
-- User roles and permissions
-- High-level data model
-- Backend architecture
-- Frontend architecture
-- API groups
-- Integrations
-- Jobs, queues, and scheduled tasks
-- Security considerations
-- Technical risks
-- Implementation phases
-- Architecture Approval Checklist
+- Approved for architecture/design
+- Approved with changes
+- Not approved — revise
 
-UI/UX Designer output:
+Product scope should be approved before architecture and UI/UX work begins.
 
-- UX summary
-- Target users and goals
-- Primary user flows
-- Required MVP screens
-- Future screens and enhancements
-- Screen-by-screen layout guidance
-- Navigation model
-- Key UI components
-- Responsive/mobile considerations
-- Accessibility requirements
-- Empty, error, and success states
-- UI/UX Approval Checklist
+---
 
-### Phase 4: Human Architecture and UX Approval Gate
+### Phase 5: Architecture and UI/UX
 
-Development must not begin until a human owner approves both architecture and UI/UX direction.
+**Owner:** COO Agent → System Architect Agent + UI/UX Designer Agent
 
-Acceptable approval responses:
+These usually run in parallel after product direction is approved.
 
-- `Approved for development.`
-- `Approved with changes: [list changes]`
-- `Not approved — revise: [reason]`
+**System Architect output:** architecture, data model, API groups, auth/authorization, integrations, technical risks, and architecture approval checklist.
 
-If approved with changes:
+**UI/UX Designer output:** UX summary, user flows, MVP screen list, navigation, screen guidance, UI states, accessibility basics, and UI/UX approval checklist.
 
-- COO summarizes the approved changes.
-- COO creates a final decision record.
-- Developer handoffs must include all approved changes.
+---
 
-If not approved:
+### Phase 6: Human Architecture/UX Approval Gate
 
-- COO routes the work back to the appropriate agent for revision.
+**Owner:** COO Agent + Human
 
-### Phase 5: Developer Handoffs
+The COO combines architecture and UI/UX outputs into a Human Approval Review Packet.
 
-Agents:
+**Approval options:**
 
-- COO / Orchestrator Agent
-- Laravel Backend Developer Agent
-- Frontend Developer Agent
+- Approved for development
+- Approved with changes
+- Not approved — revise
 
-COO creates separate handoff prompts for backend and frontend.
+Development must not begin until the human owner confirms approval.
 
-Every developer handoff must include:
-
-- Project summary
-- Human Approval Status
-- Approved MVP scope
-- Approved owner changes
-- Technical standards
-- Architecture notes
-- UI/UX notes
-- Out-of-scope items
-- Expected output
-- Verification requirements
-
-Required handoff status:
+**Required approval language for developer handoff:**
 
 ```text
 Human Approval Status:
 Approved for development.
 ```
 
-Developer agents should block implementation if this approval status is missing.
+---
 
-### Phase 6: Codex Implementation
+### Phase 7: Developer Handoffs
 
-Codex is used for actual code changes.
+**Owner:** COO Agent → Backend Developer Agent + Frontend Developer Agent
 
-Planning agents do not replace Codex. They prepare clear implementation prompts and review results.
+After approval, the COO creates separate backend and frontend handoffs.
 
-Use Codex for:
+**Backend output:** implementation plan, API contracts, database/migration plan, test plan, and Codex-ready prompt.
 
-- Creating or editing code
-- Running commands
-- Creating branches
-- Opening pull requests
-- Fixing test failures
-- Applying QA/code review fixes
+**Frontend output:** implementation plan, pages/routes/components/composables plan, API integration plan, UX state plan, test/build plan, and Codex-ready prompt.
 
-Use specialist agents for:
+---
 
-- Planning
-- Review
-- Risk analysis
-- Handoff creation
-- Acceptance criteria
-- QA plans
-- Code review
-- DevOps planning
+### Phase 8: Codex Implementation
 
-Standard Codex process:
+**Owner:** Human + Codex
 
-1. Create a feature branch from `main`.
-2. Give Codex an approved implementation prompt.
-3. Codex writes code.
-4. Codex runs available checks.
-5. Human/operator runs trusted local verification.
-6. Push branch.
-7. Create GitHub pull request.
-8. Send PR to Code Reviewer and QA Agent.
-9. Fix blockers.
-10. Merge only after human approval.
+Codex is the preferred tool for repository code changes.
 
-### Phase 7: Local Verification
+Codex should create a branch, make code changes, run tests/builds where possible, commit, create a PR, and report files changed, commands run, test/build results, assumptions, and blockers.
 
-The human/operator should run local checks before merge whenever possible.
+Developer agents should not normally edit production code directly. They should plan and review unless explicitly instructed otherwise.
 
-Laravel backend checks:
+---
+
+### Phase 9: Local or CI Verification
+
+Before merge, verify backend and frontend checks.
+
+Backend:
 
 ```bash
 composer install
@@ -323,7 +272,7 @@ php artisan migrate:fresh
 php artisan test
 ```
 
-Nuxt frontend checks:
+Frontend:
 
 ```bash
 cd frontend
@@ -332,126 +281,75 @@ npm run typecheck
 npm run build
 ```
 
-If the app has both backend and frontend, run both sets of checks.
+If GitHub Actions are configured, these checks should run automatically on PRs.
 
-### Phase 8: Code Review
+---
 
-Agent:
+### Phase 10: QA Review
 
-- Code Reviewer Agent
+**Owner:** QA Agent
 
-Code review should happen before merge whenever possible.
+QA reviews the PR or main branch against approved requirements.
 
-Review focuses on:
+QA checks critical user flows, acceptance criteria, auth/protected routes, data ownership/scoping, payment/billing/integration-sensitive flows when present, UI states, responsive basics, accessibility basics, and regression risks.
 
-- Correctness
-- Security
-- Data integrity
-- Authentication and authorization
-- Framework conventions
-- Simplicity
-- Maintainability
-- Test coverage
-- Scope control
-- Payment/billing safety when relevant
-- Public endpoint safety when relevant
+---
 
-Final recommendation must be one of:
+### Phase 11: Code Review
 
-- Approved to merge
-- Approved with follow-up items
-- Not approved — blockers found
+**Owner:** Code Reviewer Agent
 
-### Phase 9: QA Review
+Code Reviewer checks correctness, security, maintainability, simplicity, framework conventions, data integrity, test coverage, and scope control.
 
-Agent:
+---
 
-- QA Agent
+### Phase 12: Fix Cycle
 
-QA review may happen before merge, after merge to staging, or both.
-
-QA focuses on:
-
-- Approved MVP behavior
-- User flows
-- Acceptance criteria
-- Auth and permissions
-- Data ownership/scoping
-- Payment/billing flow when relevant
-- Validation and error handling
-- Empty/loading/success states
-- Responsive basics
-- Accessibility basics
-- Regression risk
-
-Final recommendation must be one of:
-
-- Ready to proceed
-- Ready with follow-up items
-- Not ready — blockers found
-
-### Phase 10: Fix Cycle
+**Owner:** Codex + relevant specialist agent
 
 If QA or Code Review finds blockers:
 
-1. COO summarizes blockers.
-2. Codex receives a blocker-fix prompt.
-3. Codex fixes only the listed issues.
-4. Human/operator reruns checks.
-5. QA and/or Code Reviewer re-review.
-6. Merge only after blockers are resolved.
+1. Create a fix branch.
+2. Ask Codex to fix only the blockers.
+3. Run local/CI checks.
+4. Open or update PR.
+5. Send back to QA/Code Reviewer.
+6. Repeat until no blockers remain.
 
-Do not expand scope during blocker fixes.
+---
 
-### Phase 11: DevOps Review
+### Phase 13: DevOps Review
 
-Agent:
+**Owner:** DevOps Agent
 
-- DevOps Agent
+DevOps reviews staging/production readiness: hosting, env vars, database, scheduler/queues, email, payment/webhook config, backups, monitoring, rollback, and deployment checklist.
 
-DevOps review should happen before staging or production deployment.
+---
 
-Review focuses on:
+### Phase 14: Human Merge / Release Decision
 
-- Hosting architecture
-- Environment variables
-- Secrets
-- DNS and SSL
-- Laravel deployment steps
-- Nuxt deployment steps
-- Scheduler/cron
-- Queue workers if needed
-- Mail provider
-- Payment/webhook configuration
-- Database backups
-- Restore process
-- Monitoring and alerts
-- Rollback plan
-- Production readiness risks
+**Owner:** Human
 
-Final recommendation must be one of:
+The human owner makes final decisions for merging PRs, staging deployment, production deployment, DNS changes, secret rotation, destructive migrations, payment/webhook production changes, and rollback/restore actions.
 
-- Ready for staging
-- Ready for production
-- Ready with follow-up items
-- Not ready — blockers found
+---
 
-## 5. Human Approval Gates
+## 4. Human Approval Gates
 
 Human approval is required before:
 
-- Development starts after architecture/UX planning
-- Merging major PRs if blockers were found earlier
-- Production deployment
-- DNS changes
-- Payment provider production configuration
-- Destructive migrations
-- Database restores
-- Secret rotation
-- Cost-increasing infrastructure changes
-- Public launch
+1. Product scope moves into architecture/design.
+2. Architecture/UI/UX moves into development.
+3. Code is merged into main when unresolved blockers exist.
+4. Staging deployment.
+5. Production deployment.
+6. DNS changes.
+7. Destructive migrations.
+8. Secret rotation.
+9. Payment provider production activation.
+10. Database restore or rollback affecting shared environments.
 
-Standard approval language:
+Standard responses:
 
 ```text
 Approved for development.
@@ -460,7 +358,6 @@ Approved for development.
 ```text
 Approved with changes:
 - [change]
-- [change]
 ```
 
 ```text
@@ -468,402 +365,318 @@ Not approved — revise:
 - [reason]
 ```
 
-## 6. Standard Technical Defaults
+---
 
-These are defaults, not permanent rules. A project may override them with explicit approval.
+## 5. Codex Usage Rules
 
-Backend defaults:
+Use Codex for creating scaffolding, implementing backend/frontend features, fixing QA/code review blockers, adding tests, adding GitHub Actions, making branch/PR code changes, and iterating after failed tests/builds.
+
+Use specialist agents for planning, handoffs, risk review, implementation review, QA, code review, and DevOps review.
+
+Codex should work on branches and PRs. It should not commit directly to `main` unless explicitly instructed.
+
+---
+
+## 6. GitHub Workflow
+
+Standard branch flow:
+
+```text
+main
+→ feature branch
+→ PR
+→ tests/builds
+→ QA review
+→ Code review
+→ human merge
+```
+
+Every meaningful PR should include title, summary, files changed, testing performed, risks/assumptions, and follow-up items.
+
+### GitHub write action policy for agents
+
+Agents may use GitHub write actions only for role-appropriate tasks requested by the human owner.
+
+Appropriate examples:
+
+- Create issues
+- Add labels
+- Add PR comments
+- Add review comments
+- Request changes
+- Create documentation PRs
+- Rerun failed workflow jobs
+
+Restricted actions:
+
+- Do not merge PRs unless explicitly instructed.
+- Do not delete files unless explicitly instructed.
+- Do not force-update branches unless explicitly instructed.
+- Do not enable auto-merge unless explicitly instructed.
+- Do not make production-impacting changes without explicit human approval.
+
+---
+
+## 7. GitHub Actions / CI Standard
+
+GitHub Actions are recommended for real projects once the initial repo structure is stable.
+
+Minimum CI for Laravel + Nuxt projects should run on pull requests and pushes to main.
+
+Backend checks:
+
+- Install Composer dependencies
+- Configure test environment
+- Run migrations
+- Run Laravel tests
+
+Frontend checks:
+
+- Install npm dependencies
+- Run typecheck
+- Run build
+
+Deployment automation should come later. Start with CI only.
+
+---
+
+## 8. Standard Technical Defaults
+
+### Backend defaults
 
 - Laravel backend API
 - Laravel Sanctum for frontend authentication when appropriate
-- Laravel Fortify for authentication functionality when appropriate
+- Laravel Fortify for auth functionality when appropriate
 - API controllers where possible
 - Form Requests for validation
 - API Resources for frontend responses
 - Policies/gates for authorization
-- MySQL or PostgreSQL for production-style relational data
-- Redis only when queues/cache/sessions/background jobs clearly need it
-- Queues/jobs/events only when justified
+- Scheduler for simple scheduled tasks
+- Queues only when justified
+- MySQL or PostgreSQL for production-style databases
+- Redis only when queues/cache/sessions justify it
 
-Frontend defaults:
+### Frontend defaults
 
-- Nuxt.js for web apps
+- Nuxt.js for websites/web apps
 - Vue.js for frontend interfaces
 - Nuxt UI where appropriate
-- nuxt-sanctum or approved Sanctum integration package when using Laravel Sanctum
-- `useSanctumFetch()` for Laravel API calls when using nuxt-sanctum
-- Pinia only when shared app-level state is clearly needed
-- Quasar only when mobile/cross-platform app is required
+- nuxt-sanctum or approved Sanctum integration package when using Sanctum
+- useSanctumFetch() for Laravel API calls when using nuxt-sanctum
+- Local state first
+- Composables for shared logic
+- Pinia only when clearly needed
+- Quasar only for mobile/cross-platform apps
 
-DevOps defaults:
+### DevOps defaults
 
 - GitHub for source control
-- GitHub pull requests for review
-- GitHub Actions when useful for CI/CD
-- Laravel Forge when using compatible VPS hosting
+- GitHub Actions for CI when useful
+- Laravel Forge or simple VPS management when appropriate
 - Cloudflare for DNS/CDN/security when appropriate
-- Simple VPS or managed app hosting for MVPs
-- Avoid Kubernetes and complex cloud architecture unless clearly justified
+- Scheduler cron for Laravel scheduled tasks
+- Supervisor only when queue workers are needed
+- Simple backups and monitoring before production
 
-## 7. Standard GitHub Workflow
+---
 
-Use this branch naming pattern:
+## 9. Definition of Done by Phase
 
-```text
-feature/[short-description]
-fix/[short-description]
-qa/[short-description]
-devops/[short-description]
-```
+### Research done
 
-Standard PR process:
+- Market/user/competitor findings summarized
+- MVP implications identified
+- Risks and constraints listed
+- Open questions provided
+- Sources included
 
-1. Create branch from `main`.
-2. Implement changes with Codex or human developer.
-3. Run local checks.
-4. Push branch.
-5. Create PR into `main`.
-6. Code Reviewer Agent reviews PR.
-7. QA Agent reviews PR or staging behavior.
-8. Codex fixes blockers if needed.
-9. Human approves merge.
-10. Merge PR.
-11. Pull latest `main` locally and rerun checks.
-
-## 8. Definition of Done by Phase
-
-### Product Planning Done
+### Product planning done
 
 - MVP scope defined
+- Out-of-scope items defined
 - User stories written
 - Acceptance criteria written
-- Risks and assumptions identified
-- Open questions listed
-- Handoff ready for architecture/design
+- Human approval received
 
-### Architecture Done
+### Architecture/UI/UX done
 
-- Application structure defined
-- Data model outlined
-- API groups defined
-- Roles and permissions defined
-- Integrations identified
-- Risks and tradeoffs documented
 - Architecture approval checklist complete
-
-### UI/UX Done
-
-- Main user flows defined
-- MVP screens listed
-- Navigation model defined
-- Layout guidance complete
-- Empty/error/success states noted
-- Accessibility basics noted
 - UI/UX approval checklist complete
+- Human approval received
+- Approved changes incorporated
 
-### Development Done
+### Development handoff done
 
-- Approved scope implemented
-- Tests/checks pass locally
+- Backend handoff complete
+- Frontend handoff complete
+- Human Approval Status included
+- Codex-ready prompts included
+
+### Implementation done
+
+- Code branch created
+- Code implemented
+- Tests/builds run or limitations documented
 - PR created
-- No known merge blockers
-- Implementation summary complete
 
-### QA Done
+### QA done
 
 - Critical flows reviewed
-- Blockers classified
-- Manual checklist created or executed
+- Blockers identified
+- Follow-ups separated
 - Final QA recommendation provided
 
-### Code Review Done
+### Code review done
 
-- Code reviewed against project rules and company standards
-- Blockers/follow-ups classified
+- Security/data integrity reviewed
+- Maintainability reviewed
+- Test coverage reviewed
 - Final code review recommendation provided
 
-### DevOps Review Done
+### DevOps done
 
-- Deployment path recommended
 - Environment variables identified
-- Scheduler/queue/mail/payment needs identified
-- Backup/monitoring/rollback plan documented
-- Final DevOps recommendation provided
+- Deployment path defined
+- Scheduler/queue plan defined
+- Backup/monitoring plan defined
+- Release recommendation provided
 
-## 9. Project-Specific Rules
+---
 
-Every project may have its own business rules.
+## 10. Standard New Project Startup Prompt
 
-Do not assume all projects use the same:
-
-- Data ownership model
-- Tenant model
-- Payment provider
-- Booking logic
-- Staff roles
-- Deployment provider
-- Database
-- Frontend framework mode
-- Auth flow
-
-For each new project, the COO should collect and pass project-specific rules to every relevant agent.
-
-Project-specific rules should include:
-
-- Approved MVP scope
-- Out-of-scope items
-- User roles
-- Payment/billing rules
-- Data ownership/scoping rules
-- Auth requirements
-- Integrations
-- Compliance concerns
-- Deployment constraints
-- Human approval decisions
-
-## 10. Standard Handoff Template
-
-Use this template when one agent hands work to another.
+Use this with the COO Agent:
 
 ```text
-Project:
-[project name]
+Use the AI Development Company Workflow Playbook as the operating process for this project.
 
-Human Approval Status:
-[approved / not approved / approved with changes]
+New project idea:
+[describe project]
 
-Context:
-[short project summary]
+Known constraints:
+[stack, budget, timeline, target users, business rules]
 
-Approved Scope:
-- [item]
-- [item]
+Start with the standard intake process.
 
-Out of Scope:
-- [item]
-- [item]
-
-Relevant Decisions:
-- [decision]
-- [decision]
-
-Technical Standards:
-- [standard]
-- [standard]
-
-Inputs:
-[paste previous agent output or summary]
-
-Requested Output:
-[what this agent should produce]
-
-Constraints:
-- Keep it simple
-- Do not expand scope
-- Clearly label assumptions and open questions
+If this is a real production project, create the first handoff for the Researcher Agent before Product Manager planning.
 ```
 
-## 11. Standard Codex Prompt Template
+---
+
+## 11. Standard Research Prompt
+
+Use this with the Researcher Agent:
 
 ```text
-You are working in the GitHub repository:
-[repo]
+Research this product opportunity.
 
-Current branch:
-[branch]
+Product idea:
+[describe product]
 
-Goal:
-[implementation goal]
+Target users:
+[describe users]
 
-Human Approval Status:
-Approved for development.
+Company standards:
+- Keep the MVP simple.
+- Avoid unnecessary complexity.
+- Prefer Laravel backend and Nuxt frontend when appropriate.
+- Build the smallest useful version first.
 
-Approved Scope:
-- [item]
-- [item]
+Research:
+1. Common user problems
+2. Competitor/alternative overview
+3. Table-stakes MVP features
+4. Features to move out of MVP
+5. Common integrations
+6. Pricing and positioning patterns, if relevant
+7. Key risks and constraints
+8. Recommended MVP implications
+9. Open questions for the Product Manager Agent
 
-Do not add features outside this scope.
-Do not overcomplicate the implementation.
-Follow company technical standards.
-Use framework conventions.
-
-Required changes:
-1. [change]
-2. [change]
-3. [change]
-
-Testing required:
-- [command]
-- [command]
-
-When finished, report:
-1. Files changed
-2. Exact changes made
-3. Tests added or updated
-4. Commands run
-5. Test/build results
-6. Remaining risks
+Return a concise research brief with sources.
 ```
 
-## 12. Standard QA Review Prompt Template
+---
+
+## 12. Standard Human Approval Packet Format
+
+The COO Agent should use this format after architecture and UI/UX outputs:
 
 ```text
-Review this PR or branch as a QA workflow test.
+Human Approval Review Packet
 
-Repository:
-[repo]
-
-PR or Branch:
-[link / number / branch]
-
-Project:
-[project name]
-
-Approved MVP Scope:
-- [item]
-- [item]
-
-Project-Specific Rules:
-- [rule]
-- [rule]
-
-Current Verification:
-- [test/build status]
-
-Do not write code.
-
-Return:
-1. QA Summary
-2. Release blockers
-3. Should-fix before release items
-4. Follow-up items
-5. Manual smoke test checklist
-6. Final QA recommendation
+1. Project Summary
+2. MVP Scope
+3. Architecture Summary
+4. UI/UX Summary
+5. Main User Flows
+6. Required Screens
+7. Key Technical Decisions
+8. Data and Integration Decisions
+9. Security/Auth Decisions
+10. Risks
+11. Assumptions
+12. Open Questions
+13. Items Requiring Human Decision
+14. Recommendation
+15. Approval Options
 ```
 
-## 13. Standard Code Review Prompt Template
+---
 
-```text
-Review this PR or branch for code quality and merge readiness.
+## 13. Out-of-Scope Control Rule
 
-Repository:
-[repo]
+Every agent must protect against scope creep.
 
-PR or Branch:
-[link / number / branch]
+When an agent recommends a feature, classify it as:
 
-Project:
-[project name]
+- MVP
+- Should-have soon
+- Future enhancement
+- Out of scope
 
-Approved Scope:
-- [item]
-- [item]
+Agents should not add features simply because they are common, interesting, or technically possible.
 
-Project-Specific Rules:
-- [rule]
-- [rule]
+---
 
-Current Verification:
-- [test/build status]
+## 14. Current Recommended Agent File Access
 
-Do not write code.
+The workflow playbook should be available to these agents:
 
-Return:
-1. Code Review Summary
-2. Merge/release blockers
-3. Should-fix before release
-4. Follow-up items
-5. Maintainability notes
-6. Security/data-integrity notes
-7. Test coverage notes
-8. Final recommendation
-```
+### Required
 
-## 14. Standard DevOps Review Prompt Template
-
-```text
-Run a DevOps readiness review.
-
-Repository:
-[repo]
-
-Branch:
-[branch]
-
-Project:
-[project name]
-
-Current Status:
-- [status]
-
-Approved Stack:
-- [stack item]
-- [stack item]
-
-Hosting Context:
-- [hosting details]
-
-Known Risks:
-- [risk]
-- [risk]
-
-Do not write code.
-
-Return:
-1. DevOps Summary
-2. Required environment variables
-3. Environment recommendations
-4. Deployment architecture recommendation
-5. Backend deployment checklist
-6. Frontend deployment checklist
-7. Scheduler/queue requirements
-8. Email/payment/webhook configuration notes
-9. Backup and restore plan
-10. Monitoring and alerts
-11. Release blockers
-12. Should-fix before production
-13. Final DevOps recommendation
-```
-
-## 15. Current Agent Creation Roadmap
-
-Core agents already created:
-
-- COO / Orchestrator Agent
-- Product Manager Agent
-- System Architect Agent
-- UI/UX Designer Agent
-- Laravel Backend Developer Agent
-- Frontend Developer Agent
+- COO Agent
 - QA Agent
 - Code Reviewer Agent
 - DevOps Agent
 
-Recommended next agents:
+### Recommended
 
-1. Researcher Agent
-2. Sales / Proposal Agent
-3. Marketing Agent
-4. Documentation Agent
+- Product Manager Agent
+- Researcher Agent
+- System Architect Agent
+- UI/UX Designer Agent
 
-Do not create unnecessary agents until the core workflow is stable across at least two different mock projects.
+### Optional
 
-## 16. Current Workflow Maturity Status
+- Laravel Backend Developer Agent
+- Frontend Developer Agent
 
-The workflow has successfully completed one full mock project cycle:
+The COO Agent is the most important agent to keep updated because it controls the process.
 
-- Product planning
-- Architecture planning
-- UI/UX planning
-- Human approval gate
-- Backend implementation through Codex
-- Frontend implementation through Codex
-- Local verification
-- QA review
-- QA blocker fixes
-- Code review
-- DevOps readiness review
+---
 
-Next maturity step:
+## 15. Living Document Rule
 
-Run a second mock project in a different domain to prove the workflow is generic and not overfit to the appointment SaaS example.
+This playbook is a living operating manual.
+
+Update it when:
+
+- A new agent is created
+- A workflow changes
+- A recurring mistake is discovered
+- A new approval gate is needed
+- Company technical standards change
+- A better process is proven through real project work
+
+When updated, commit the new version to the `company-operations` repository and re-upload or reattach it to relevant agents.
